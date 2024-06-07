@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Formulário de Inscrição</title>
+</head>
+<body>
+    <form id="myForm">
+        <label for="nome">Nome:</label><br>
+        <input type="text" id="nome" name="nome"><br>
+        <label for="matricula">Matrícula:</label><br>
+        <input type="text" id="matricula" name="matricula"><br>
+        <label for="nota1">Nota 1:</label><br>
+        <input type="number" step="0.01" id="nota1" name="nota1"><br>
+        <label for="nota2">Nota 2:</label><br>
+        <input type="number" step="0.01" id="nota2" name="nota2"><br>
+        <input type="button" value="Enviar" onclick="addRow()">
+    </form>
+    <table id="infoTable">
+        <tr>
+            <th>Nome</th>
+            <th>Matrícula</th>
+            <th>Nota 1</th>
+            <th>Nota 2</th>
+            <th>Média</th>
+            <th>Situação</th>
+        </tr>
+    </table>
+
+    <script>
+        function addRow() {
+            var nome = document.getElementById('nome').value;
+            var matricula = document.getElementById('matricula').value;
+            var nota1 = parseFloat(document.getElementById('nota1').value);
+            var nota2 = parseFloat(document.getElementById('nota2').value);
+            var media = (nota1 + nota2) / 2;
+            var situacao = media > 5 ? 'Aprovado' : 'Reprovado';
+
+            var table = document.getElementById('infoTable');
+            var row = table.insertRow(-1);
+            row.insertCell(0).innerHTML = nome;
+            row.insertCell(1).innerHTML = matricula;
+            row.insertCell(2).innerHTML = nota1.toFixed(2);
+            row.insertCell(3).innerHTML = nota2.toFixed(2);
+            row.insertCell(4).innerHTML = media.toFixed(2);
+            row.insertCell(5).innerHTML = situacao;
+
+            document.getElementById('myForm').reset();
+        }
+    </script>
+</body>
+</html>
